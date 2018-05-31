@@ -11,10 +11,6 @@ bot.on('ready', function() {
 bot.login("NDUwNDkwNTg3NDQ4MjEzNTA2.Dez_pA.TQBVy4AiM4JJ2F7AXNdtBZXCIg0");
 
 bot.on('message', message => {
-    if (message.content === prefix + "help"){
-        message.channel.send("Liste des commandes: \n -!help \n -!sanabot \n -!fabriquant \n -!kick");
-    }
-    
     if (message.content === "salut"){
         message.reply("Bien le bonjour. :)");
         console.log("Commande de Salut Faite");
@@ -34,7 +30,7 @@ bot.on('message', message => {
         var embed = new Discord.RichEmbed()
             .setTitle("Sanalia")
             .setDescription("Commande d'aide")
-            .addField("!help","Page d'aide", true)
+            .addField("!aide","Page d'aide", true)
             .addField("!sanabot","Permet de voir l'age du bot", true)
             .addField("!fabriquant","Permet de voir le Créateur du Bot", true)
             .addField("!kick","Permet de kick une personne", true)
