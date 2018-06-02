@@ -11,6 +11,10 @@ bot.on('ready', function() {
 bot.login("NDUwNDkwNTg3NDQ4MjEzNTA2.Dez_pA.TQBVy4AiM4JJ2F7AXNdtBZXCIg0");
 
 bot.on('message', message => {
+    if (message.content === prefix + "help"){
+        message.channel.send("Liste des commandes: \n -!help \n -!sanabot \n -!fabriquant");
+    }
+    
     if (message.content === "salut"){
         message.reply("Bien le bonjour. :)");
         console.log("Commande de Salut Faite");
@@ -30,7 +34,7 @@ bot.on('message', message => {
         var embed = new Discord.RichEmbed()
             .setTitle("Sanalia")
             .setDescription("Commande d'aide")
-            .addField("!aide","Page d'aide", true)
+            .addField("!help","Page d'aide", true)
             .addField("!sanabot","Permet de voir l'age du bot", true)
             .addField("!fabriquant","Permet de voir le Créateur du Bot", true)
             .addField("!kick","Permet de kick une personne", true)
@@ -45,10 +49,6 @@ bot.on('message', message => {
         command = args.shift().toLowerCase();
 
         if (command === prefix + "kick") {
-            let modRole = message.guild.roles.find("name", "📕 Administrateur");
-            if(!message.member.roles.has(modRole.id)) {
-                return message.reply("Tu n'as pas la permission de faire cette commande.").catch(console.error);
-            }
             if(message.mentions.users.size === 0) {
                 return message.reply("Merci de mentionner l'utilisateur à expulser").catch(console.error);
             }
@@ -61,20 +61,7 @@ bot.on('message', message => {
             }
             kickMember.kick().then(member => {
                 message.reply(`${member.user.username} a été epulsé avec succès.`).catch(console.error);
-                message.guild.channels.find("name", "general").send(`**${member.user.username} a été expulsé du discord par **${message.author.username}**`)
-            }).catch(console.error)
-
-        }
-
-        if (command === "ban") {
-            let modRole = message.guild.roles.find("name", "📕 Administrateur");
-            if(!message.member.roles.has(modRole.id)) {
-                return message.reply("Tu n'as pas la permission de faire cette commande.").catch(console.error);
-            }
-            const member = message.mentions.members.first();
-            if (!member) return message.reply("Merci de mentionner l'utilisateur à bannir.");
-            member.ban().then(member => {
-                message.reply(`${member.user.username} a été banni avec succès.`).catch(console.error);
+                message.guild.channels.find("name", "▶accueil◀").send(`**${member.user.username} a été expulsé du discord par **${message.author.username}**`)
             }).catch(console.error)
         }
     })
