@@ -1,10 +1,10 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-var prefix = ("!")
+var prefix = ("*")
 
 bot.on('ready', function() {
-    bot.user.setGame("Sanalia - !help");
+    bot.user.setGame("Folyria - *help");
     console.log("Connecté");
 });
 
@@ -20,8 +20,8 @@ bot.on('message', message => {
         console.log("Commande de Salut Faite");
     }
 
-    if (message.content === prefix + "sanabot"){
-        message.reply("Création du bot le _28/05/2018_ à _21h25_ ");
+    if (message.content === prefix + "folyriabot"){
+        message.reply("Création du bot le _07/06/2018_ à _19h56_ ");
         console.log("Commande effectué");
     }
 
