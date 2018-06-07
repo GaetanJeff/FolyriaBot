@@ -12,7 +12,7 @@ bot.login("NDU0MzQ1MDExNzMyMDIxMjUw.DfsFnw.Ufb2pIXEr7HRcVpL5QGobKlVgps");
 
 bot.on('message', message => {
     if (message.content === prefix + "help"){
-        message.channel.send("Liste des commandes: \n -!help \n -!sanabot \n -!fabriquant");
+        message.channel.send("Liste des commandes: \n -*help \n -*folyriabot \n -*fabriquant \n -*kick");
     }
     
     if (message.content === "salut"){
