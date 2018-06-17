@@ -21,7 +21,7 @@ bot.on('guildMemberRemove', member =>{
 
 bot.on('message', message => {
     if (message.content === prefix + "help"){
-        message.channel.send("Liste des commandes: \n -!help \n -!secbot \n -!fabriquant \n -!kick");
+        message.channel.send("Liste des commandes: \n -!help \n -!secbot \n -!fabriquant \n -!kick \n -!statistique");
     }
     
     if (message.content === "salut"){
@@ -47,6 +47,7 @@ bot.on('message', message => {
             .addField("!secbot","Permet de voir l'age du bot", true)
             .addField("!fabriquant","Permet de voir le Créateur du Bot", true)
             .addField("!kick","Permet de kick une personne", true)
+            .addField("!statistique","Vous envoye vos statistiques de votre compte", true)
             .setColor("0xFF0000")
             .setFooter("Bot dev par GaetanJeff")
         message.channel.sendEmbed(embed);
@@ -80,7 +81,7 @@ bot.on('message', message => {
     var args = message.content.substring(prefix.length).split(" ");
 
     switch (args[0].toLowerCase()) {
-        case "statistiques":
+        case "statistique":
 
         var userCreateDate = message.author.createdAt.toString().split(" ");
         var msgauthor = message.author.id;
