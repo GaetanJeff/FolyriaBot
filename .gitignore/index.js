@@ -1,27 +1,36 @@
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 
-var prefix = ("*")
+var prefix = ("!")
+
 
 bot.on('ready', function() {
-    bot.user.setGame("Folyria - *help");
+    bot.user.setGame("[!help] SecBotHeberg");
     console.log("Connecté");
 });
 
-bot.login("NDU0MzQ1MDExNzMyMDIxMjUw.DfsFnw.Ufb2pIXEr7HRcVpL5QGobKlVgps");
+bot.login("NDU2OTIzOTQ0NTQ5ODc1NzQz.DgWnRQ.45F44_9yf9TQTaIDxdW0MY25cQw");
+
+bot.on('guildMemberAdd', member => {
+    member.guild.channels.find("name", "►nouveaux-salutation").send(` ${member.user.username} viens de rejoindre l'hébergeur`)
+})
+
+bot.on('guildMemberRemove', member =>{
+    member.guild.channels.find("name", "►nouveaux-salutation").send(` ${member.user.username} viens de quitter l'hébergeur`)
+})
 
 bot.on('message', message => {
     if (message.content === prefix + "help"){
-        message.channel.send("Liste des commandes: \n -*help \n -*folyriabot \n -*fabriquant \n -*kick");
+        message.channel.send("Liste des commandes: \n -!help \n -!secbot \n -!fabriquant \n -!kick");
     }
     
     if (message.content === "salut"){
-        message.reply("Bien le bonjour. :)");
-        console.log("Commande de Salut Faite");
+        message.channel.send("Salut")
+        console.log("Salut")
     }
 
-    if (message.content === prefix + "folyriabot"){
-        message.reply("Création du bot le _07/06/2018_ à _19h56_ ");
+    if (message.content === prefix + "secbot"){
+        message.reply("Création du bot le _16/06/2018_ à _08h42_ ");
         console.log("Commande effectué");
     }
 
@@ -35,7 +44,7 @@ bot.on('message', message => {
             .setTitle("Sanalia")
             .setDescription("Commande d'aide")
             .addField("!help","Page d'aide", true)
-            .addField("!sanabot","Permet de voir l'age du bot", true)
+            .addField("!secbot","Permet de voir l'age du bot", true)
             .addField("!fabriquant","Permet de voir le Créateur du Bot", true)
             .addField("!kick","Permet de kick une personne", true)
             .setColor("0xFF0000")
@@ -61,8 +70,31 @@ bot.on('message', message => {
             }
             kickMember.kick().then(member => {
                 message.reply(`${member.user.username} a été epulsé avec succès.`).catch(console.error);
-                message.guild.channels.find("name", "▶accueil◀").send(`**${member.user.username} a été expulsé du discord par **${message.author.username}**`)
+                message.guild.channels.find("name", "►nouveaux-salutation").send(`**${member.user.username} a été expulsé du discord par **${message.author.username}**`)
             }).catch(console.error)
         }
     })
+    
+    if (!message.content.startsWith(prefix)) return;
+
+    var args = message.content.substring(prefix.length).split(" ");
+
+    switch (args[0].toLowerCase()) {
+        case "statistiques":
+
+        var userCreateDate = message.author.createdAt.toString().split(" ");
+        var msgauthor = message.author.id;
+
+        var stats_embed = new Discord.RichEmbed()
+
+        .setColor("#F80303")
+        .setTitle(`Statistiques de l'utilisateur : ${message.author.username}`)
+        .addField(`ID de l'utilisateur :id:`, msgauthor, true)
+        .addField("Date de création de l'utilisateur:", userCreateDate[1] + ' ' + userCreateDate[2])
+        .setThumbnail(message.author.avatarURL)
+        .setFooter("Bot dev par GaetanJeff")
+        message.reply("Tu peux regarder tes messages privés ! Tu viens de recevoir tes statistiques !")
+        message.author.send({embed: stats_embed});
+        break;
+    }
 });
