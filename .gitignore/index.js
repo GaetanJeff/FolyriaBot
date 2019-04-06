@@ -9,7 +9,7 @@ bot.on('ready', function() {
     console.log("Connecté");
 });
 
-bot.login("NDU2OTIzOTQ0NTQ5ODc1NzQz.DgWnRQ.45F44_9yf9TQTaIDxdW0MY25cQw");
+bot.login("NDYwODU0NjE3OTU4NTE0Njkw.XKEBGw.MJhSC2ahhYZe1xQuTyw7UxW4ge0");
 
 bot.on('guildMemberAdd', member => {
     member.guild.channels.find("name", "►nouveaux-salutation").send(` ${member.user.username} viens de rejoindre l'hébergeur`)
